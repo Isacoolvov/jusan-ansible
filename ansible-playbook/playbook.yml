@@ -1,19 +1,6 @@
 ---
 - hosts: lb
   become: yes
-
-  # tasks:
-  #   - name: Убедиться, что пакет chrony установлен
-  #     apt:
-  #       name: chrony
-  #       state: present
-    
-  #   - name: Убедиться, что пакет chrony запущен
-  #     service:
-  #       name: chronyd
-  #       state: started
-  #       enabled: yes
-
   tasks:
     - apt: name=nginx state=present
     - service: name=nginx state=started enabled=yes
