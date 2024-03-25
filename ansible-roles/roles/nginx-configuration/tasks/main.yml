@@ -1,3 +1,4 @@
+---
 - name: Copy nginx.conf
   copy:
     src: nginx.conf
@@ -49,7 +50,7 @@
   template:
     src: app.conf.j2
     dest: "/etc/nginx/conf.d/{{ server_name }}.conf"
-  become: true
+  become: yes
   vars:
     server_port: 80
     server_name: jusan-apps.kz
@@ -57,3 +58,10 @@
       - local-vps-23:9090
       - local-vps-24:9090
   notify: reload-nginx
+
+- name: Start Nginx service
+  service:
+    name: nginx
+    state: started
+  become: yes
+
